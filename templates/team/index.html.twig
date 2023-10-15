@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Team index{% endblock %}
+
+{% block body %}
+<style>
+  /* Styles for the Team index */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Styles for the "Show" and "Edit" links */
+  .table a {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .table a:hover {
+    background-color: #45a049;
+  }
+
+  /* Styles for the "Create new" link */
+  a.create-new {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  a.create-new:hover {
+    background-color: #45a049;
+  }
+</style>
+
+   <center> <h1>Team </h1> <center/>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Country</th>
+                <th>Nb_player</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.id }}</td>
+                <td>{{ team.name }}</td>
+                <td>{{ team.photo }}</td>
+                <td>{{ team.country }}</td>
+                <td>{{ team.nbPlayer }}</td>
+                <td>
+                    <a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
+                    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_team_new') }}">Create new</a>
+{% endblock %}

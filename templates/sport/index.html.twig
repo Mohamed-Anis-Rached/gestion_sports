@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sport index{% endblock %}
+
+{% block body %}
+<style>
+  /* Styles for the Sport index */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+  }
+
+  .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Styles for the Create new link */
+  a.create-new {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  a.create-new:hover {
+    background-color: #45a049;
+  }
+</style>
+
+
+
+    <h1>Sport </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sport in sports %}
+            <tr>
+                <td>{{ sport.id }}</td>
+                <td>{{ sport.name }}</td>
+                <td>{{ sport.description }}</td>
+                <td>
+                    <a href="{{ path('app_sport_show', {'id': sport.id}) }}">show</a>
+                    <a href="{{ path('app_sport_edit', {'id': sport.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   <center> <a href="{{ path('app_sport_new') }}">Create new</a> <center/>
+{% endblock %}

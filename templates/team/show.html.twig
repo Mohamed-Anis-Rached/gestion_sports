@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Team{% endblock %}
+
+{% block body %}
+<style>
+  /* Styles for the Sport show page */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+  }
+
+  .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Styles for the back to list and edit links */
+  a.back-link,
+  a.edit-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+
+  a.back-link:hover,
+  a.edit-link:hover {
+    background-color: #45a049;
+  }
+
+  /* Styles for the delete form section */
+  .delete-form {
+    margin-top: 20px;
+  }
+
+  .delete-form button {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .delete-form button:hover {
+    background-color: #d32f2f;
+  }
+</style>
+
+    <h1>Team</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ team.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ team.name }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ team.photo }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ team.country }}</td>
+            </tr>
+            <tr>
+                <th>Nb_player</th>
+                <td>{{ team.nbPlayer }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_team_index') }}">back to list</a>
+
+    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+
+    {{ include('team/_delete_form.html.twig') }}
+{% endblock %}

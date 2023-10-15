@@ -1,0 +1,392 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+ {% block contactCss %}<link rel="stylesheet" href="{{asset('home.css')}}">{% endblock %}
+
+{% block body %}
+<style>
+ /* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+a {
+  color: #f00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation */
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+nav a:hover {
+  color: #f00;
+}
+
+/* Main Content */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Team Section */
+.team-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 10px;
+  width: 250px;
+}
+
+.team-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+.team-title {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.team-description {
+  margin-top: 10px;
+}
+
+/* Image Section */
+.image-section {
+  text-align: center;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ 
+</style>
+<main>
+      <section>
+        <h1>Welcome to BeIN Sports</h1>
+        <p>BeIN Sports is a global sports network that brings you the latest sports news, live matches, and exclusive videos. Stay tuned for all your favorite sports, including football, basketball, tennis, and more.</p>
+        <a href="https://www.beinsports.com/ar/">Learn more</a>
+      </section>
+      
+      <section>
+        <h2>Live Matches</h2>
+        <ul>
+          <li><a href="https://www.beinsports.com/ar/">Match 1</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Match 2</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Match 3</a></li>
+        </ul>
+        <a href="https://www.beinsports.com/ar/">View all live matches</a>
+      </section>
+      
+      <section>
+        <h2>Latest News</h2>
+        <article>
+          <h3>Article Title</h3>
+          <p>Article content goes here.</p>
+        </article>
+        <article>
+          <h3>Article Title</h3>
+          <p>Article content goes here.</p>
+          <a href="https://www.beinsports.com/ar/">Read more</a>
+        </article>
+        <a href="https://www.beinsports.com/ar/">View all news</a>
+      </section>
+      
+      <section>
+        <h2>Featured Videos</h2>
+        <ul>
+          <li><a href="https://www.beinsports.com/ar/">Video 1</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Video 2</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Video 3</a></li>
+        </ul>
+        <a href="https://www.beinsports.com/ar/">View all videos</a>
+      </section>
+      
+      <section>
+        <h2>Sports</h2>
+        <ul>
+          <li><a href="https://www.beinsports.com/ar/">Football</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Basketball</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Tennis</a></li>
+          <li><a href="https://www.beinsports.com/ar/">Cycling</a></li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>About Us</h2>
+        <p>BeIN Sports is a global sports network that provides the latest news, live matches, and exclusive videos to sports fans around the world.</p>
+        <a href="https://www.beinsports.com/ar/">Learn more</a>
+      </section>
+    </main>
+    
+ <section>
+ <section>
+ <section>
+  <h2>Teams HandBall</h2>
+  <div class="team-slider">
+    {% for team in teams %}
+      {% if team.sport.name == 'HandBall' %}
+        <div class="team-slide">
+          <img src="{{ asset('uploads/' ~ team.photo) }}" alt="{{ team.name }}">
+          <div class="team-details">
+            <h2 class="team-title">{{ team.name }}</h2>
+            <p class="team-description">Country: {{ team.country }}</p>
+            <p class="team-description">Sport: {{ team.sport.name }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  // Auto slide configuration
+  const slider = document.querySelector('.team-slider');
+  let isDragging = false;
+  let startPos = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID = 0;
+  let currentIndex = 0;
+
+  // Touch events
+  slider.addEventListener('mousedown', dragStart);
+  slider.addEventListener('touchstart', dragStart);
+  slider.addEventListener('mouseup', dragEnd);
+  slider.addEventListener('touchend', dragEnd);
+  slider.addEventListener('mouseleave', dragEnd);
+  slider.addEventListener('mousemove', drag);
+  slider.addEventListener('touchmove', drag);
+
+  // Disable context menu on slider
+  slider.oncontextmenu = function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  };
+
+  // Start dragging
+  function dragStart(e) {
+    if (e.type === 'touchstart') {
+      startPos = e.touches[0].clientX;
+    } else {
+      startPos = e.clientX;
+      isDragging = true;
+    }
+
+    animationID = requestAnimationFrame(animation);
+    slider.classList.add('grabbing');
+  }
+
+  // Dragging
+  function drag(e) {
+    if (isDragging) {
+      const currentPosition = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      const slideWidth = slider.querySelector('.team-slide').offsetWidth;
+      const dragAmount = currentPosition - startPos;
+      currentTranslate = prevTranslate + dragAmount;
+
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+    }
+  }
+
+  // End dragging
+  function dragEnd() {
+    cancelAnimationFrame(animationID);
+    isDragging = false;
+
+    const slideWidth = slider.querySelector('.team-slide').offsetWidth;
+
+    if (currentTranslate < -slideWidth / 4 && currentIndex < teams.length - 1) {
+      currentIndex++;
+    }
+
+    if (currentTranslate > slideWidth / 4 && currentIndex > 0) {
+      currentIndex--;
+    }
+
+    setPositionByIndex();
+
+    slider.classList.remove('grabbing');
+  }
+
+  // Set slider position based on current index
+  function setPositionByIndex() {
+    const slideWidth = slider.querySelector('.team-slide').offsetWidth;
+    currentTranslate = currentIndex * -slideWidth;
+    prevTranslate = currentTranslate;
+
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  }
+
+  // Auto slide
+  function animation() {
+    const slideWidth = slider.querySelector('.team-slide').offsetWidth;
+    currentTranslate = currentIndex * -slideWidth;
+    prevTranslate = currentTranslate;
+
+    if (currentTranslate === 0) {
+      currentIndex++;
+    } else if (currentIndex === teams.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex++;
+    }
+
+    setPositionByIndex();
+
+    animationID = requestAnimationFrame(animation);
+  }
+</script>
+<style>.team-slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 20px;
+}
+
+.team-slide {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  margin-right: 20px;
+  width: 300px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+}
+
+.team-slide:hover {
+  transform: scale(1.05);
+}
+
+.team-slide img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.team-details {
+  padding: 10px;
+}
+
+.team-title {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.team-description {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #777;
+}
+</style>
+
+  <h2>Teams Football</h2>
+  <div class="team-section">
+    {% for team in teams %}
+      {% if team.sport.name == 'Football' %}
+        <div class="team-box">
+          <img src="{{ asset('uploads/' ~ team.photo) }}" alt="{{ team.name }}">
+          <h2 class="team-title">{{ team.name }}</h2>
+          <p class="team-description">Country: {{ team.country }}</p>
+          <p class="team-description">Sport: {{ team.sport.name }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+    <footer>
+      <p>&copy; 2023 BeIN Sports. All rights reserved.</p>
+    </footer>
+{% endblock %}
